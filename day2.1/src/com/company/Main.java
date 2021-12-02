@@ -12,18 +12,21 @@ public class Main {
             Scanner myReader = new Scanner(input);
             int depth = 0;
             int horizontal = 0;
-
+            int aim = 0;
             while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
                 int numberOnly = Integer.parseInt(line.replaceAll("[^0-9]", ""));
                 if(line.contains("forward")){
                     horizontal += numberOnly;
+                    depth += aim * numberOnly;
                 }
                 else if(line.contains("up")){
-                    depth -= numberOnly;
+                 //   depth -= numberOnly;
+                    aim -= numberOnly;
                 }
                 else if(line.contains("down")){
-                    depth += numberOnly;
+                   // depth += numberOnly;
+                    aim += numberOnly;
                 }
             }
             int finalResult = depth * horizontal;
