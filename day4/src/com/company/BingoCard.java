@@ -13,7 +13,7 @@ public class BingoCard {
         for(int i=0; i<5; i++){
             for(int j=0; j<5; j++){
                 numbers[i][j] = numbersCard.get(counter);
-                isRolled.put(String.valueOf(i) + String.valueOf(j), false);
+                isRolled.put(String.valueOf(numbersCard.get(counter)), false);
                 counter++;
             }
         }
@@ -22,40 +22,54 @@ public class BingoCard {
     public boolean checkBingo(int number) {
         for(int i=0; i<5; i++){
             for(int j=0; j<5; j++){
-               if(numbers[i][j] == number ){
-                   isRolled.replace((String.valueOf(i) + String.valueOf(j)),true);
+               if(isRolled.containsKey(String.valueOf(number)) ){
+                   isRolled.replace((String.valueOf(number)),true);
+                   if(checkVertical()) return true;
+                   if(checkHorizontal())return true;
+                   break;
                }
             }
         }
-        if(checkHorizontal()) return true;
-        if(checkVertical())return true;
+
         return false;
     }
 
-    private boolean checkVertical() {
+    private boolean checkHorizontal() {
         boolean hasBingo = false;
+        int counter =0;
         for(int i=0; i<5; i++) {
             for (int j = 0; j < 5; j++) {
-                if(isRolled.get((String.valueOf(j) + String.valueOf(i)))){
+                if(isRolled.get(String.valueOf(numbers[i][j]))){
                     hasBingo = true;
+                    counter++;
                     continue;
                 }
                 hasBingo =false;
+                counter = 0;
+                break;
+            }
+            if(counter == 5){
                 break;
             }
         }
         return hasBingo;
     }
 
-    private boolean checkHorizontal() {
+    private boolean checkVertical() {
         boolean hasBingo = false;
+        int counter = 0;
         for(int i=0; i<5; i++) {
             for (int j = 0; j < 5; j++) {
-                if(isRolled.get((String.valueOf(i) + String.valueOf(j)))){
+                if(isRolled.get(String.valueOf(numbers[j][i]))){
                    hasBingo = true;
+                   counter++;
                     continue;
                 }
                 hasBingo =false;
+                counter =0;
+                break;
+            }
+            if(counter == 5){
                 break;
             }
         }
@@ -66,7 +80,7 @@ public class BingoCard {
         int sum = 0;
         for(int i=0; i<5; i++) {
             for (int j = 0; j < 5; j++) {
-                if(!isRolled.get((String.valueOf(i) + String.valueOf(j)))) {
+                if(!isRolled.get(String.valueOf(numbers[i][j]))) {
                     sum += numbers[i][j];
                 }
             }
