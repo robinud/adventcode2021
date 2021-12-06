@@ -1,0 +1,7 @@
+
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(Çµí‘
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Àûå 
+I
+java:S3252'"3Use static access with "java.util.Map" for "Entry".(Í·ðÈ
+S	java:S106F"9Replace this use of System.out or System.err by a logger.(½ÝÑÌüÿÿÿÿ
