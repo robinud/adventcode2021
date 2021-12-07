@@ -25,10 +25,14 @@ public class Main {
             for(int i=0; i< highestPosition; i++){
                 for(int position: crabPositions){
                     if(sumMovement.containsKey(i)){
-                        sumMovement.replace(i,sumMovement.get(i) + Long.valueOf(Math.abs(position-i)));
+                        //puzzle 1
+                        //sumMovement.replace(i,sumMovement.get(i) + Long.valueOf(Math.abs(position-i)));
+                        sumMovement.replace(i,sumMovement.get(i) + calculateFuel(position,i));
                     }
                     else {
-                        sumMovement.put(i, Long.valueOf(Math.abs(position-i)));
+                        //puzzle 1
+                        //sumMovement.put(i, Long.valueOf(Math.abs(position-i)));
+                        sumMovement.put(i, calculateFuel(position,i));
                     }
                 }
             }
@@ -44,5 +48,14 @@ public class Main {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    private static Long calculateFuel(int position, int endPosition) {
+        int difference = Math.abs(position - endPosition);
+        long endResult = 0;
+        for(int i =0; i< difference; i++){
+            endResult += 1 + (1* i);
+        }
+        return endResult;
     }
 }
